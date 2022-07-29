@@ -9,16 +9,20 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get inputUsername () {
-        return $('#username');
+    get txtEmail () {
+        return $('#i0116');
     }
 
-    get inputPassword () {
-        return $('#password');
+    get txtPassword () {
+        return $('#i0118');
     }
 
     get btnSubmit () {
         return $('button[type="submit"]');
+    }
+
+    get btnNext(){
+        return $('#idSIButton9')
     }
 
     /**
