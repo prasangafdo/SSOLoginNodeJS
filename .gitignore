@@ -104,3 +104,4 @@ dist
 .tern-port
 
 /allure-results
+/test/resources/login.info.js
