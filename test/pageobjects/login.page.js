@@ -9,11 +9,11 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get txtEmail () {
+    get txtEmail() {
         return $('#i0116');
     }
 
-    get txtPassword () {
+    get txtPassword() {
         return $('#i0118');
     }
 
@@ -34,8 +34,18 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
+
+        /*
+            * Enter email
+            * click on next button
+            * Enter password
+            * Click on signin button
+            * Click do not show this checkbox
+         */
+
+        await this.txtEmail.setValue(username);
+        await this.btnNext.click()
+        await this.txtPassword.setValue(password);
         await this.chkDontShowThis.click()
         await this.btnSubmit.click();
 
