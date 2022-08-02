@@ -18,11 +18,15 @@ class LoginPage extends Page {
     }
 
     get btnSubmit () {
-        return $('button[type="submit"]');
+        return $("//input[@type='submit']");
     }
 
     get btnNext(){
         return $('#idSIButton9')
+    }
+
+    get chkFrequently(){
+        return $('#idChkBx_SAOTCAS_TD')
     }
 
     get chkDontShowThis(){
@@ -46,6 +50,8 @@ class LoginPage extends Page {
         await this.txtEmail.setValue(username);
         await this.btnNext.click()
         await this.txtPassword.setValue(password);
+        await this.btnSubmit.click();
+        await this.chkFrequently.click();//add a wait for display
         await this.chkDontShowThis.click()
         await this.btnSubmit.click();
 
