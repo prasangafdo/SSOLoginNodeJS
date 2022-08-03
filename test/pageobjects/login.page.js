@@ -1,5 +1,4 @@
-
-
+const SessionHandler = require('../util/session.handler')
 const Page = require('./page');
 
 /**
@@ -47,19 +46,22 @@ class LoginPage extends Page {
             * Click do not show this checkbox
          */
 
-        await this.txtEmail.setValue(username);
+        await SessionHandler.getSessionCookiesFromBrowser()
+
+
+        await this.txtEmail.setValue(username)
         await this.btnNext.click()
-        await this.txtPassword.setValue(password);
-        await this.btnSubmit.click();
-        await this.chkFrequently.click();//add a wait for display
+        await this.txtPassword.setValue(password)
+        await this.btnSubmit.click()
+        await this.chkFrequently.waitForDisplayed({timeout:5000})
+        await this.chkFrequently.click()
+        await this.chkDontShowThis.waitForDisplayed({timeout:5000})
         await this.chkDontShowThis.click()
-        await this.btnSubmit.click();
+        await this.btnSubmit.waitForDisplayed({timeout:5000})
+        await this.btnSubmit.click()
 
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
     open () {
         return super.open('login');
     }
