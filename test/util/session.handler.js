@@ -1,0 +1,17 @@
+class sessionHandler{
+
+    async getSessionCookiesFromBrowser(){
+        let url = "TEST"
+        while (!url.includes('login.live.com')){
+            await browser.pause(4000)
+            url = await browser.getUrl()
+        }
+        console.log(await browser.getCookies())
+        console.log(await browser.getCookies['ESTSAUTHLIGHT'])
+        console.log(await browser.getCookies(['ESTSAUTHPRESISTENT']))
+        console.log(await browser.getCookies(['ESTSAUTH']))
+        console.log(await browser.getCookies(['SSOCOOKIEPULLED']))
+    }
+}
+
+module.exports = new sessionHandler()

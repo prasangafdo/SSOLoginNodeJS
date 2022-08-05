@@ -1,5 +1,4 @@
-
-
+const SessionHandler = require('../util/session.handler')
 const Page = require('./page');
 
 /**
@@ -9,20 +8,28 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get txtEmail () {
+    get txtEmail() {
         return $('#i0116');
     }
 
-    get txtPassword () {
+    get txtPassword() {
         return $('#i0118');
     }
 
     get btnSubmit () {
-        return $('button[type="submit"]');
+        return $("//input[@type='submit']");
     }
 
     get btnNext(){
         return $('#idSIButton9')
+    }
+
+    get chkFrequently(){
+        return $('#idChkBx_SAOTCAS_TD')
+    }
+
+    get chkDontShowThis(){
+        return $("//input[@name='DontShowAgain']")
     }
 
     /**
@@ -30,14 +37,31 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+
+        /*
+            * Enter email
+            * click on next button
+            * Enter password
+            * Click on signin button
+            * Click do not show this checkbox
+         */
+
+        await SessionHandler.getSessionCookiesFromBrowser()
+
+
+        await this.txtEmail.setValue(username)
+        await this.btnNext.click()
+        await this.txtPassword.setValue(password)
+        await this.btnSubmit.click()
+        await this.chkFrequently.waitForDisplayed({timeout:5000})
+        await this.chkFrequently.click()
+        await this.chkDontShowThis.waitForDisplayed({timeout:5000})
+        await this.chkDontShowThis.click()
+        await this.btnSubmit.waitForDisplayed({timeout:5000})
+        await this.btnSubmit.click()
+
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
     open () {
         return super.open('login');
     }
