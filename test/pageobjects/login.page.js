@@ -1,4 +1,4 @@
-const SessionHandler = require('../util/session.handler')
+const session = require('../util/session.handler')
 const Page = require('./page');
 
 /**
@@ -46,7 +46,7 @@ class LoginPage extends Page {
             * Click do not show this checkbox
          */
 
-        await SessionHandler.getSessionCookiesFromBrowser()
+        await session.getSessionCookiesFromBrowser()
 
 
         await this.txtEmail.setValue(username)
