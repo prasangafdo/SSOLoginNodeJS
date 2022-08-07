@@ -62,6 +62,8 @@ class LoginPage extends Page {
 
         await this.btnSubmit.click()
 
+        await session.saveSessionToExcelSheet()
+
     }
 
     open () {
