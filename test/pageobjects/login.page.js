@@ -46,9 +46,6 @@ class LoginPage extends Page {
             * Click do not show this checkbox
          */
 
-        await session.getSessionCookiesFromBrowser()
-
-
         await this.txtEmail.setValue(username)
         await this.btnNext.click()
         await this.txtPassword.waitForClickable({timeout:6000})
@@ -60,6 +57,9 @@ class LoginPage extends Page {
         await this.chkDontShowThis.waitForDisplayed({timeout:5000})
         await this.chkDontShowThis.click()
         await this.btnSubmit.waitForDisplayed({timeout:5000})
+
+        await session.getSessionCookiesFromBrowser()
+
         await this.btnSubmit.click()
 
     }

@@ -12,6 +12,10 @@ class sessionHandler{
         console.log('ESTSAUTH',await browser.getCookies(['ESTSAUTH']))
         console.log('SSOCOOKIEPULLED',await browser.getCookies(['SSOCOOKIEPULLED']))
     }
+
+    async saveSessionToExcelSheet(){
+
+    }
 }
 
 module.exports = new sessionHandler()
