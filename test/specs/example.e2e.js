@@ -8,7 +8,7 @@ describe('My Login application', () => {
         await LoginPage.login(LoginInfo.email, LoginInfo.password);
         await expect(LandingPage.lblUserEmail).toBeExisting();
         await expect(LandingPage.lblUserEmail).toHaveTextContaining(LoginInfo.email);
-    });
+    }).timeout(900000);
 });
 
 
