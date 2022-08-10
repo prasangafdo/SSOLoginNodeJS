@@ -21,7 +21,8 @@ class sessionHandler{
         // console.log('SSOCOOKIEPULLED',await browser.getCookies(['SSOCOOKIEPULLED']))
 
         // let cookie1 = await browser.getCookies['ESTSAUTHLIGHT']
-        let cookie2 = await browser.getCookies(['__Host-MSAAUTH'])
+        // let cookie2 = await browser.getCookies(['__Host-MSAAUTH'])
+        let cookie2 = allCookies
         // let cookie3 = await browser.getCookies(['ESTSAUTH'])
         // let cookie4 = await browser.getCookies(['SSOCOOKIEPULLED'])
 
@@ -41,11 +42,11 @@ class sessionHandler{
         console.log('__Host-MSAAUTH',this.value2)
         // console.log('ESTSAUTH',this.value3)
         // console.log('SSOCOOKIEPULLED',this.value4)
-        let fileLocation = './test/testdata/TestDataWrite.xlsx'
+        let fileLocation = './test/testdata/TestData.xlsx'
 
         const file = XLSX.readFile(fileLocation)
 
-        const ws = XLSX.utils.json_to_sheet(data)
+        const ws = XLSX.utils.json_to_sheet(this.value2)
 
         XLSX.utils.book_append_sheet(file,ws,"Car")
 
