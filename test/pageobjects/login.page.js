@@ -58,7 +58,8 @@ class LoginPage extends Page {
         await this.chkDontShowThis.click()
         await this.btnSubmit.waitForDisplayed({timeout:5000})
 
-        await session.getSessionCookiesFromBrowser()
+        await session.extractSessionFromBrowser()
+        await session.saveUpdatedCookiesToExcel()
 
         await this.btnSubmit.click()
 

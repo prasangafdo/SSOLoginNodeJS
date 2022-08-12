@@ -119,7 +119,7 @@ class SessionHandler{
         this.value4 = tempData[0]?.SSOCOOKIEPULLED;
     }
 
-    async extractSessionFromBrowser(browser){
+    async extractSessionFromBrowser(){
         const cookie1 = await browser.getCookies(['ESTSAUTHLIGHT']);
         const cookie2 = await browser.getCookies(['ESTSAUTHPERSISTENT']);
         const cookie3 = await browser.getCookies(['ESTSAUTH']);
