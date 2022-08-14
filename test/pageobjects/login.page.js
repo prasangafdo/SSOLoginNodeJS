@@ -1,4 +1,4 @@
-const SessionHandler = require('../util/session.handler')
+const session = require('../util/session.handler')
 const Page = require('./page');
 
 /**
@@ -46,19 +46,24 @@ class LoginPage extends Page {
             * Click do not show this checkbox
          */
 
-        await SessionHandler.getSessionCookiesFromBrowser()
-
-
         await this.txtEmail.setValue(username)
         await this.btnNext.click()
+        await this.txtPassword.waitForClickable({timeout:6000})
         await this.txtPassword.setValue(password)
         await this.btnSubmit.click()
-        await this.chkFrequently.waitForDisplayed({timeout:5000})
+        await this.chkFrequently.waitForClickable({timeout:5000})
         await this.chkFrequently.click()
+        await this.chkFrequently.waitForDisplayed({timeout:9000, reverse:true})
         await this.chkDontShowThis.waitForDisplayed({timeout:5000})
         await this.chkDontShowThis.click()
         await this.btnSubmit.waitForDisplayed({timeout:5000})
+
+        await session.extractSessionFromBrowser()
+        await session.saveUpdatedCookiesToExcel()
+
         await this.btnSubmit.click()
+
+        await session.saveSessionToExcelSheet()
 
     }
 
